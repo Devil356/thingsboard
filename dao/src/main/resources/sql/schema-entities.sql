@@ -253,6 +253,40 @@ CREATE TABLE IF NOT EXISTS relation (
 -- CREATE TABLE dashboard_relations PARTITION OF relation FOR VALUES IN ('DASHBOARD');
 -- CREATE TABLE rule_relations PARTITION OF relation FOR VALUES IN ('RULE_CHAIN', 'RULE_NODE');
 
+CREATE TABLE IF NOT EXISTS territory (
+    id uuid NOT NULL CONSTRAINT territory_pkey PRIMARY KEY,
+    name varchar(255),
+    tenant_id uuid,
+    CONSTRAINT territory_name_unq_key UNIQUE (tenant_id, name)
+);
+
+CREATE TABLE IF NOT EXISTS building (
+    id uuid NOT NULL CONSTRAINT building_pkey PRIMARY KEY,
+    territory_id uuid NOT NULL,
+    name varchar(255),
+    tenant_id uuid,
+    CONSTRAINT building_name_unq_key UNIQUE (tenant_id, name),
+    CONSTRAINT fk_territory FOREIGN KEY (territory_id) REFERENCES territory(id)
+);
+
+CREATE TABLE IF NOT EXISTS room (
+    id uuid NOT NULL CONSTRAINT room_pkey PRIMARY KEY,
+    building_id uuid NOT NULL,
+    name varchar(255),
+    tenant_id uuid,
+    CONSTRAINT room_name_unq_key UNIQUE (tenant_id, name),
+    CONSTRAINT fk_building FOREIGN KEY (building_id) REFERENCES building(id)
+);
+
+CREATE TABLE IF NOT EXISTS mega_device (
+    id uuid NOT NULL CONSTRAINT mega_device_pkey PRIMARY KEY,
+    room_id uuid NOT NULL,
+    name varchar(255),
+    tenant_id uuid,
+    CONSTRAINT mega_device_name_unq_key UNIQUE (tenant_id, name),
+    CONSTRAINT fk_room FOREIGN KEY (room_id) REFERENCES room(id)
+);
+
 CREATE TABLE IF NOT EXISTS tb_user (
     id uuid NOT NULL CONSTRAINT tb_user_pkey PRIMARY KEY,
     created_time bigint NOT NULL,
