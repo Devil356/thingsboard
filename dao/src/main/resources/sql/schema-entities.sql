@@ -255,6 +255,7 @@ CREATE TABLE IF NOT EXISTS relation (
 
 CREATE TABLE IF NOT EXISTS territory (
     id uuid NOT NULL CONSTRAINT territory_pkey PRIMARY KEY,
+    created_time bigint NOT NULL,
     name varchar(255),
     tenant_id uuid,
     CONSTRAINT territory_name_unq_key UNIQUE (tenant_id, name)
@@ -263,6 +264,7 @@ CREATE TABLE IF NOT EXISTS territory (
 CREATE TABLE IF NOT EXISTS building (
     id uuid NOT NULL CONSTRAINT building_pkey PRIMARY KEY,
     territory_id uuid NOT NULL,
+    created_time bigint NOT NULL,
     name varchar(255),
     tenant_id uuid,
     CONSTRAINT building_name_unq_key UNIQUE (tenant_id, name),
@@ -272,6 +274,7 @@ CREATE TABLE IF NOT EXISTS building (
 CREATE TABLE IF NOT EXISTS room (
     id uuid NOT NULL CONSTRAINT room_pkey PRIMARY KEY,
     building_id uuid NOT NULL,
+    created_time bigint NOT NULL,
     name varchar(255),
     tenant_id uuid,
     CONSTRAINT room_name_unq_key UNIQUE (tenant_id, name),
@@ -281,6 +284,7 @@ CREATE TABLE IF NOT EXISTS room (
 CREATE TABLE IF NOT EXISTS mega_device (
     id uuid NOT NULL CONSTRAINT mega_device_pkey PRIMARY KEY,
     room_id uuid NOT NULL,
+    created_time bigint NOT NULL,
     name varchar(255),
     tenant_id uuid,
     CONSTRAINT mega_device_name_unq_key UNIQUE (tenant_id, name),

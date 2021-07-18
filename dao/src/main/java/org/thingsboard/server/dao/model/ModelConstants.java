@@ -178,6 +178,13 @@ public class ModelConstants {
     public static final String DEVICE_PROFILE_PROVISION_DEVICE_KEY = "provision_device_key";
 
     /**
+     * Territory profile constants.
+     */
+    public static final String TERRITORY_COLUMN_FAMILY_NAME = "territory";
+    public static final String TERRITORY_TENANT_ID_PROPERTY = TENANT_ID_PROPERTY;
+    public static final String TERRITORY_NAME_PROPERTY = "name";
+
+    /**
      * Cassandra entityView constants.
      */
     public static final String ENTITY_VIEW_TABLE_FAMILY_NAME = "entity_view";
