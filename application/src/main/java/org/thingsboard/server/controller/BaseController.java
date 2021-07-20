@@ -103,6 +103,7 @@ import org.thingsboard.server.dao.rule.RuleChainService;
 import org.thingsboard.server.dao.tenant.TbTenantProfileCache;
 import org.thingsboard.server.dao.tenant.TenantProfileService;
 import org.thingsboard.server.dao.tenant.TenantService;
+import org.thingsboard.server.dao.territory.TerritoryService;
 import org.thingsboard.server.dao.user.UserService;
 import org.thingsboard.server.dao.widget.WidgetTypeService;
 import org.thingsboard.server.dao.widget.WidgetsBundleService;
@@ -143,6 +144,9 @@ public abstract class BaseController {
     protected static final String HOME_DASHBOARD = "homeDashboardId";
 
     private static final ObjectMapper json = new ObjectMapper();
+
+    @Autowired
+    protected TerritoryService territoryService;
 
     @Autowired
     private ThingsboardErrorResponseHandler errorResponseHandler;
