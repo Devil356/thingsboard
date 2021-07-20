@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan("org.thingsboard.server.dao.sql")
+@ComponentScan({"org.thingsboard.server.dao.sql", "org.thingsboard.server.dao.territory"})
 @EnableJpaRepositories("org.thingsboard.server.dao.sql")
 @EntityScan("org.thingsboard.server.dao.model.sql")
 @EnableTransactionManagement
