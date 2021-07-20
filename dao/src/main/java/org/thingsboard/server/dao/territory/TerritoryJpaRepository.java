@@ -19,12 +19,10 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.thingsboard.server.common.data.Territory;
-import org.thingsboard.server.common.data.id.TenantId;
 import org.thingsboard.server.dao.Dao;
-import org.thingsboard.server.dao.TenantEntityDao;
 
 @Repository
-public interface TerritoryJpaRepository extends JpaRepository<Territory, Long> {
+public interface TerritoryJpaRepository extends JpaRepository<Long, Territory>, Dao<Territory> {
 
     /**
      * Save or update territory object
