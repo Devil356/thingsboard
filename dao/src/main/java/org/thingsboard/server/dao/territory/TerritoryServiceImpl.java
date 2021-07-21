@@ -32,7 +32,7 @@ public class TerritoryServiceImpl extends AbstractEntityService implements Terri
     private TerritoryJpaRepository territoryJpaRepository;
 
     @Override
-    public Territory saveTerritory(TerritoryEntity territory) {
+    public Territory saveTerritory(Territory territory) {
         log.trace("Executing saveTerritory [{}]", territory);
         return territoryJpaRepository.save(territory);
     }

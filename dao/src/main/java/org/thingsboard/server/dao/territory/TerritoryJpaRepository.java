@@ -33,5 +33,5 @@ public interface TerritoryJpaRepository extends JpaRepository<TerritoryEntity, L
      */
     @SuppressWarnings("unchecked")
     @NotNull
-    Territory save(@NotNull TerritoryEntity territory);
+    Territory save(@NotNull Territory territory);
 }
