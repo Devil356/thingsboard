@@ -15,6 +15,7 @@
  */
 package org.thingsboard.server.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.thingsboard.server.common.data.exception.ThingsboardException;
@@ -27,7 +28,7 @@ import org.thingsboard.server.queue.util.TbCoreComponent;
 public class TerritoryController extends BaseController {
 
     @PreAuthorize("hasAnyAuthority('TENANT_ADMIN', 'CUSTOMER_USER')")
-    @RequestMapping(value = "/territory", method = RequestMethod.POST)
+    @RequestMapping(value = "/territory", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public TerritoryEntity saveTerritory(@RequestBody TerritoryEntity territory) throws ThingsboardException {
         try {
