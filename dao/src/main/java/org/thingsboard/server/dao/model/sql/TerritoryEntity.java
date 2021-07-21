@@ -36,7 +36,7 @@ import java.util.UUID;
 @Table(name = ModelConstants.TERRITORY_COLUMN_FAMILY_NAME)
 public class TerritoryEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = ModelConstants.ID_PROPERTY, columnDefinition = "uuid")
     private UUID id;
 
