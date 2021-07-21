@@ -253,8 +253,10 @@ CREATE TABLE IF NOT EXISTS relation (
 -- CREATE TABLE dashboard_relations PARTITION OF relation FOR VALUES IN ('DASHBOARD');
 -- CREATE TABLE rule_relations PARTITION OF relation FOR VALUES IN ('RULE_CHAIN', 'RULE_NODE');
 
+CREATE SEQUENCE IF NOT EXISTS global_seq START WITH 100000;
+
 CREATE TABLE IF NOT EXISTS territory (
-    id uuid NOT NULL CONSTRAINT territory_pkey PRIMARY KEY,
+    id INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     created_time bigint NOT NULL,
     name varchar(255),
     tenant_id uuid,
@@ -262,8 +264,8 @@ CREATE TABLE IF NOT EXISTS territory (
 );
 
 CREATE TABLE IF NOT EXISTS building (
-    id uuid NOT NULL CONSTRAINT building_pkey PRIMARY KEY,
-    territory_id uuid NOT NULL,
+    id INTEGER NOT NULL CONSTRAINT building_pkey PRIMARY KEY,
+    territory_id INTEGER NOT NULL,
     created_time bigint NOT NULL,
     name varchar(255),
     tenant_id uuid,
@@ -272,8 +274,8 @@ CREATE TABLE IF NOT EXISTS building (
 );
 
 CREATE TABLE IF NOT EXISTS room (
-    id uuid NOT NULL CONSTRAINT room_pkey PRIMARY KEY,
-    building_id uuid NOT NULL,
+    id INTEGER NOT NULL CONSTRAINT room_pkey PRIMARY KEY,
+    building_id INTEGER NOT NULL,
     created_time bigint NOT NULL,
     name varchar(255),
     tenant_id uuid,
@@ -282,8 +284,8 @@ CREATE TABLE IF NOT EXISTS room (
 );
 
 CREATE TABLE IF NOT EXISTS mega_device (
-    id uuid NOT NULL CONSTRAINT mega_device_pkey PRIMARY KEY,
-    room_id uuid NOT NULL,
+    id INTEGER NOT NULL CONSTRAINT mega_device_pkey PRIMARY KEY,
+    room_id INTEGER NOT NULL,
     created_time bigint NOT NULL,
     name varchar(255),
     tenant_id uuid,

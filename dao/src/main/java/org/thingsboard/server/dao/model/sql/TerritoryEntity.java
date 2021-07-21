@@ -35,10 +35,12 @@ import java.util.UUID;
 })
 @Table(name = ModelConstants.TERRITORY_COLUMN_FAMILY_NAME)
 public class TerritoryEntity {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = ModelConstants.ID_PROPERTY, columnDefinition = "uuid")
-    private UUID id;
+    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = 100000)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
+    @Column(name = ModelConstants.ID_PROPERTY)
+    private Integer id;
 
     @Column(name = ModelConstants.CREATED_TIME_PROPERTY)
     private long createdTime;
@@ -52,12 +54,12 @@ public class TerritoryEntity {
     public TerritoryEntity() {
     }
 
-    public TerritoryEntity(UUID id, long createdTime, UUID tenantId, String name) {
-        this.id = id;
-        this.createdTime = createdTime;
-        this.tenantId = tenantId;
-        this.name = name;
-    }
+//    public TerritoryEntity(Integer id, long createdTime, UUID tenantId, String name) {
+//        this.id = id;
+//        this.createdTime = createdTime;
+//        this.tenantId = tenantId;
+//        this.name = name;
+//    }
 
     public TerritoryEntity(long createdTime, UUID tenantId, String name) {
         this.createdTime = createdTime;
@@ -65,11 +67,11 @@ public class TerritoryEntity {
         this.name = name;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
