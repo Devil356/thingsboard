@@ -17,6 +17,7 @@ package org.thingsboard.server.dao.model.sql;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Generated;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 import org.thingsboard.server.common.data.Territory;
@@ -24,10 +25,7 @@ import org.thingsboard.server.dao.model.ModelConstants;
 import org.thingsboard.server.dao.util.mapping.JsonBinaryType;
 import org.thingsboard.server.dao.util.mapping.JsonStringType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Data
@@ -39,6 +37,7 @@ import java.util.UUID;
 @Table(name = ModelConstants.TERRITORY_COLUMN_FAMILY_NAME)
 public class TerritoryEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
     @Column(name = ModelConstants.ID_PROPERTY, columnDefinition = "uuid")
     protected UUID id;
 
