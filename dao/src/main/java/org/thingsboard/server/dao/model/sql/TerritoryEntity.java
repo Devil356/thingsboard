@@ -39,10 +39,10 @@ public class TerritoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
     @Column(name = ModelConstants.ID_PROPERTY, columnDefinition = "uuid")
-    protected UUID id;
+    private UUID id;
 
     @Column(name = ModelConstants.CREATED_TIME_PROPERTY)
-    protected long createdTime;
+    private long createdTime;
 
     @Column(name = ModelConstants.TERRITORY_TENANT_ID_PROPERTY, columnDefinition = "uuid")
     private UUID tenantId;
@@ -51,7 +51,6 @@ public class TerritoryEntity {
     private String name;
 
     public TerritoryEntity() {
-        super();
     }
 
     public TerritoryEntity(TerritoryEntity territoryEntity) {

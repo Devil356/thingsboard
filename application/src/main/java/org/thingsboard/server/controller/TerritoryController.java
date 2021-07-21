@@ -32,6 +32,7 @@ public class TerritoryController extends BaseController {
     public TerritoryEntity saveTerritory(@RequestBody TerritoryEntity territory) throws ThingsboardException {
         try {
             territory.setTenantId(getCurrentUser().getTenantId().getId());
+            territory.setCreatedTime(0L);
             TerritoryEntity savedTerritory = checkNotNull(territoryService.saveTerritory(territory));
             return savedTerritory;
         } catch (Exception e) {
