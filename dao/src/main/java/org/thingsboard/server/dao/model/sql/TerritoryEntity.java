@@ -65,19 +65,19 @@ public class TerritoryEntity {
         this.name = name;
     }
 
-    private UUID getId() {
+    public UUID getId() {
         return this.id;
     }
 
-    private void setId(UUID id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    private long getCreatedTime() {
+    public long getCreatedTime() {
         return createdTime;
     }
 
-    private void setCreatedTime(long createdTime) {
+    public void setCreatedTime(long createdTime) {
         if (createdTime > 0) {
             this.createdTime = createdTime;
         }
