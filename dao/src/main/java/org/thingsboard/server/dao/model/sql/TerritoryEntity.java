@@ -28,7 +28,6 @@ import org.thingsboard.server.dao.util.mapping.JsonStringType;
 import javax.persistence.*;
 import java.util.UUID;
 
-@Data
 @Entity
 @TypeDefs({
         @TypeDef(name = "json", typeClass = JsonStringType.class),
@@ -53,29 +52,51 @@ public class TerritoryEntity {
     public TerritoryEntity() {
     }
 
-    public TerritoryEntity(TerritoryEntity territoryEntity) {
-        this.setId(territoryEntity.getId());
-        this.setCreatedTime(territoryEntity.getCreatedTime());
-        this.tenantId = territoryEntity.getTenantId();
-        this.name = territoryEntity.getName();
+    public TerritoryEntity(UUID id, long createdTime, UUID tenantId, String name) {
+        this.id = id;
+        this.createdTime = createdTime;
+        this.tenantId = tenantId;
+        this.name = name;
     }
 
-    public UUID getUuid() {
-        return id;
+    public TerritoryEntity(long createdTime, UUID tenantId, String name) {
+        this.createdTime = createdTime;
+        this.tenantId = tenantId;
+        this.name = name;
     }
 
-    public void setUuid(UUID id) {
+    private UUID getId() {
+        return this.id;
+    }
+
+    private void setId(UUID id) {
         this.id = id;
     }
 
-    public long getCreatedTime() {
+    private long getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(long createdTime) {
+    private void setCreatedTime(long createdTime) {
         if (createdTime > 0) {
             this.createdTime = createdTime;
         }
     }
 
+
+    public UUID getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(UUID tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

@@ -28,7 +28,7 @@ import org.thingsboard.server.queue.util.TbCoreComponent;
 public class TerritoryController extends BaseController {
 
     @PreAuthorize("hasAnyAuthority('TENANT_ADMIN', 'CUSTOMER_USER')")
-    @RequestMapping(value = "/territory", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/territory", method = RequestMethod.POST)
     @ResponseBody
     public TerritoryEntity saveTerritory(@RequestBody TerritoryEntity territory) throws ThingsboardException {
         try {
