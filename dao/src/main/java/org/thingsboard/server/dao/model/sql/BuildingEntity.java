@@ -51,7 +51,7 @@ public class BuildingEntity {
     public BuildingEntity() {
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "territory_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private TerritoryEntity territoryEntity;
