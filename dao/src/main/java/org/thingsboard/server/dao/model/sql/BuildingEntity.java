@@ -42,10 +42,10 @@ public class BuildingEntity {
     @Column(name = ModelConstants.CREATED_TIME_PROPERTY)
     private long createdTime;
 
-    @Column(name = ModelConstants.TERRITORY_TENANT_ID_PROPERTY, columnDefinition = "uuid")
+    @Column(name = ModelConstants.BUILDING_TENANT_ID_PROPERTY, columnDefinition = "uuid")
     private UUID tenantId;
 
-    @Column(name = ModelConstants.TERRITORY_NAME_PROPERTY)
+    @Column(name = ModelConstants.BUILDING_NAME_PROPERTY)
     private String name;
 
     public BuildingEntity() {

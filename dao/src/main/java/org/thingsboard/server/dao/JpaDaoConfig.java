@@ -28,8 +28,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan({"org.thingsboard.server.dao.sql", "org.thingsboard.server.dao.territory"})
-@EnableJpaRepositories({"org.thingsboard.server.dao.sql", "org.thingsboard.server.dao.territory"})
-@EntityScan({"org.thingsboard.server.dao.model.sql", "org.thingsboard.server.dao.territory"})
+@EnableJpaRepositories({"org.thingsboard.server.dao.sql", "org.thingsboard.server.dao.territory", "org.thingsboard.server.dao.building"})
+@EntityScan({"org.thingsboard.server.dao.model.sql", "org.thingsboard.server.dao.territory", "org.thingsboard.server.dao.building"})
 @EnableTransactionManagement
 public class JpaDaoConfig {
 

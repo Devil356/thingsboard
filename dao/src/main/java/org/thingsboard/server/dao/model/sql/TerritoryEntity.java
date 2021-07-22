@@ -51,7 +51,7 @@ public class TerritoryEntity {
     public TerritoryEntity() {
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "territory")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "territoryEntity")
     @OrderBy("name DESC")
     List<BuildingEntity> buildingEntities;
 
