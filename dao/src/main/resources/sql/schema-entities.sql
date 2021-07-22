@@ -264,7 +264,7 @@ CREATE TABLE IF NOT EXISTS territory (
 );
 
 CREATE TABLE IF NOT EXISTS building (
-    id INTEGER NOT NULL CONSTRAINT building_pkey PRIMARY KEY,
+    id INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     territory_id INTEGER NOT NULL,
     created_time bigint NOT NULL,
     name varchar(255),

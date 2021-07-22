@@ -15,17 +15,14 @@
  */
 package org.thingsboard.server.dao.model.sql;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Generated;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
-import org.thingsboard.server.common.data.Territory;
 import org.thingsboard.server.dao.model.ModelConstants;
 import org.thingsboard.server.dao.util.mapping.JsonBinaryType;
 import org.thingsboard.server.dao.util.mapping.JsonStringType;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -54,12 +51,17 @@ public class TerritoryEntity {
     public TerritoryEntity() {
     }
 
-//    public TerritoryEntity(Integer id, long createdTime, UUID tenantId, String name) {
-//        this.id = id;
-//        this.createdTime = createdTime;
-//        this.tenantId = tenantId;
-//        this.name = name;
-//    }
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "territory")
+    @OrderBy("name DESC")
+    List<BuildingEntity> buildingEntities;
+
+    public List<BuildingEntity> getBuildingEntities() {
+        return buildingEntities;
+    }
+
+    public void setBuildingEntities(List<BuildingEntity> buildingEntities) {
+        this.buildingEntities = buildingEntities;
+    }
 
     public TerritoryEntity(long createdTime, UUID tenantId, String name) {
         this.createdTime = createdTime;

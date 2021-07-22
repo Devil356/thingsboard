@@ -86,6 +86,7 @@ import org.thingsboard.server.common.msg.TbMsgMetaData;
 import org.thingsboard.server.dao.asset.AssetService;
 import org.thingsboard.server.dao.attributes.AttributesService;
 import org.thingsboard.server.dao.audit.AuditLogService;
+import org.thingsboard.server.dao.building.BuildingService;
 import org.thingsboard.server.dao.customer.CustomerService;
 import org.thingsboard.server.dao.dashboard.DashboardService;
 import org.thingsboard.server.dao.device.ClaimDevicesService;
@@ -147,6 +148,9 @@ public abstract class BaseController {
 
     @Autowired
     protected TerritoryService territoryService;
+
+    @Autowired
+    protected BuildingService buildingService;
 
     @Autowired
     private ThingsboardErrorResponseHandler errorResponseHandler;

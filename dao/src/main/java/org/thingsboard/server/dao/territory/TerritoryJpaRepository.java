@@ -23,7 +23,7 @@ import org.thingsboard.server.dao.model.sql.TerritoryEntity;
 
 @Repository
 @Transactional
-public interface TerritoryJpaRepository extends JpaRepository<TerritoryEntity, Long> {
+public interface TerritoryJpaRepository extends JpaRepository<TerritoryEntity, Integer> {
 
 //    /**
 //     * Save or update territory object
