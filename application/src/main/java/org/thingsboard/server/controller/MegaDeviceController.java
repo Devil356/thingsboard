@@ -23,6 +23,8 @@ import org.thingsboard.server.dao.model.sql.MegaDeviceEntity;
 import org.thingsboard.server.dao.model.sql.RoomEntity;
 import org.thingsboard.server.queue.util.TbCoreComponent;
 
+import java.util.UUID;
+
 @RestController
 @TbCoreComponent
 @RequestMapping("/api")
@@ -31,7 +33,7 @@ public class MegaDeviceController extends BaseController {
     @PreAuthorize("hasAnyAuthority('TENANT_ADMIN', 'CUSTOMER_USER')")
     @RequestMapping(value = "/{id}/megadevices", method = RequestMethod.POST)
     @ResponseBody
-    public Megadevice saveMegaDevice(@RequestBody Megadevice entity, @PathVariable int id) throws ThingsboardException {
+    public Megadevice saveMegaDevice(@RequestBody Megadevice entity, @PathVariable UUID id) throws ThingsboardException {
         try {
             entity.setTenantId(getCurrentUser().getTenantId());
             entity.setCreatedTime(0L);

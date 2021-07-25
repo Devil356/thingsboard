@@ -23,6 +23,8 @@ import org.thingsboard.server.dao.model.sql.BuildingEntity;
 import org.thingsboard.server.dao.model.sql.RoomEntity;
 import org.thingsboard.server.queue.util.TbCoreComponent;
 
+import java.util.UUID;
+
 @RestController
 @TbCoreComponent
 @RequestMapping("/api")
@@ -31,7 +33,7 @@ public class RoomController extends BaseController {
     @PreAuthorize("hasAnyAuthority('TENANT_ADMIN', 'CUSTOMER_USER')")
     @RequestMapping(value = "/{id}/rooms", method = RequestMethod.POST)
     @ResponseBody
-    public Room saveRoom(@RequestBody Room entity, @PathVariable int id) throws ThingsboardException {
+    public Room saveRoom(@RequestBody Room entity, @PathVariable UUID id) throws ThingsboardException {
         try {
             entity.setTenantId(getCurrentUser().getTenantId());
             entity.setCreatedTime(0L);
