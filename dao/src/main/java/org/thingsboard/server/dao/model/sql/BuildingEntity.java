@@ -15,6 +15,7 @@
  */
 package org.thingsboard.server.dao.model.sql;
 
+import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.TypeDef;
@@ -24,9 +25,11 @@ import org.thingsboard.server.dao.util.mapping.JsonBinaryType;
 import org.thingsboard.server.dao.util.mapping.JsonStringType;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Data
 @TypeDefs({
         @TypeDef(name = "json", typeClass = JsonStringType.class),
         @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
@@ -48,20 +51,16 @@ public class BuildingEntity {
     @Column(name = ModelConstants.BUILDING_NAME_PROPERTY)
     private String name;
 
-    public BuildingEntity() {
-    }
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "territory_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private TerritoryEntity territoryEntity;
 
-    public TerritoryEntity getTerritoryEntity() {
-        return territoryEntity;
-    }
+    @OneToMany(mappedBy = "buildingEntity", fetch = FetchType.EAGER)
+    @OrderBy("name DESC")
+    private List<RoomEntity> roomEntityList;
 
-    public void setTerritoryEntity(TerritoryEntity territoryEntity) {
-        this.territoryEntity = territoryEntity;
+    public BuildingEntity() {
     }
 
     public BuildingEntity(long createdTime, UUID tenantId, String name) {
@@ -70,38 +69,9 @@ public class BuildingEntity {
         this.name = name;
     }
 
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public long getCreatedTime() {
-        return createdTime;
-    }
-
     public void setCreatedTime(long createdTime) {
         if (createdTime > 0) {
             this.createdTime = createdTime;
         }
-    }
-
-
-    public UUID getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(UUID tenantId) {
-        this.tenantId = tenantId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

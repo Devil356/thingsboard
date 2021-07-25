@@ -15,6 +15,7 @@
  */
 package org.thingsboard.server.dao.model.sql;
 
+import lombok.Data;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 import org.thingsboard.server.dao.model.ModelConstants;
@@ -26,6 +27,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Data
 @TypeDefs({
         @TypeDef(name = "json", typeClass = JsonStringType.class),
         @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
@@ -48,19 +50,11 @@ public class TerritoryEntity {
     @Column(name = ModelConstants.TERRITORY_NAME_PROPERTY)
     private String name;
 
-    public TerritoryEntity() {
-    }
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "territoryEntity")
     @OrderBy("name DESC")
     List<BuildingEntity> buildingEntities;
 
-    public List<BuildingEntity> getBuildingEntities() {
-        return buildingEntities;
-    }
-
-    public void setBuildingEntities(List<BuildingEntity> buildingEntities) {
-        this.buildingEntities = buildingEntities;
+    public TerritoryEntity() {
     }
 
     public TerritoryEntity(long createdTime, UUID tenantId, String name) {
@@ -69,38 +63,9 @@ public class TerritoryEntity {
         this.name = name;
     }
 
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public long getCreatedTime() {
-        return createdTime;
-    }
-
     public void setCreatedTime(long createdTime) {
         if (createdTime > 0) {
             this.createdTime = createdTime;
         }
-    }
-
-
-    public UUID getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(UUID tenantId) {
-        this.tenantId = tenantId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

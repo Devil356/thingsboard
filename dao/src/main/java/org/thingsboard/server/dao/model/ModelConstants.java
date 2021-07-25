@@ -193,6 +193,23 @@ public class ModelConstants {
     public static final String BUILDING_TERRITORY_ID = "territory_id";
 
     /**
+     * Room constants.
+     */
+    public static final String ROOM_COLUMN_FAMILY_NAME = "room";
+    public static final String ROOM_TENANT_ID_PROPERTY = TENANT_ID_PROPERTY;
+    public static final String ROOM_NAME_PROPERTY = "name";
+    public static final String ROOM_TERRITORY_ID = "building_id";
+
+    /**
+     * Mega Device constants.
+     */
+    public static final String MEGA_DEVICE_COLUMN_FAMILY_NAME = "mega_device";
+    public static final String MEGA_DEVICE_TENANT_ID_PROPERTY = TENANT_ID_PROPERTY;
+    public static final String MEGA_DEVICE_NAME_PROPERTY = "name";
+    public static final String MEGA_DEVICE_TERRITORY_ID = "room_id";
+
+
+    /**
      * Cassandra entityView constants.
      */
     public static final String ENTITY_VIEW_TABLE_FAMILY_NAME = "entity_view";
