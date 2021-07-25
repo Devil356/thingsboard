@@ -15,8 +15,8 @@
  */
 package org.thingsboard.server.dao.room;
 
-import org.thingsboard.server.dao.model.sql.RoomEntity;
+import org.thingsboard.server.common.data.Room;
 
 public interface RoomService {
-    RoomEntity save(RoomEntity roomEntity, Integer buildingId);
+    Room save(Room roomEntity, Integer buildingId);
 }

@@ -17,10 +17,11 @@ package org.thingsboard.server.dao.megadevice;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.thingsboard.server.common.data.Megadevice;
 import org.thingsboard.server.dao.model.sql.MegaDeviceEntity;
 import org.thingsboard.server.dao.model.sql.RoomEntity;
 
 @Repository
-public interface MegaDeviceJpaRepository extends JpaRepository<MegaDeviceEntity, Integer> {
+public interface MegaDeviceJpaRepository extends JpaRepository<Megadevice, Integer> {
 
 }

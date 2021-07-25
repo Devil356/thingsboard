@@ -17,6 +17,7 @@ package org.thingsboard.server.dao.room;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thingsboard.server.common.data.Room;
 import org.thingsboard.server.dao.building.BuildingJpaRepository;
 import org.thingsboard.server.dao.model.sql.BuildingEntity;
 import org.thingsboard.server.dao.model.sql.RoomEntity;
@@ -32,8 +33,8 @@ public class RoomServiceImpl implements RoomService {
     private BuildingJpaRepository buildingJpaRepository;
 
     @Override
-    public RoomEntity save(RoomEntity roomEntity, Integer buildingId) {
-        roomEntity.setBuildingEntity(buildingJpaRepository.getOne(buildingId));
-        return roomJpaRepository.save(roomEntity);
+    public Room save(Room room, Integer buildingId) {
+        room.setBuilding(buildingJpaRepository.getOne(buildingId));
+        return roomJpaRepository.save(room);
     }
 }

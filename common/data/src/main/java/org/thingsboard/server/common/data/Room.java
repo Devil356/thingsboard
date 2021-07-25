@@ -15,14 +15,18 @@
  */
 package org.thingsboard.server.common.data;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
+@Data
 @EqualsAndHashCode(callSuper = true)
 @Slf4j
 public class Room extends AbstractObject {
 
     private static final long serialVersionUID = 1L;
+
+    private Building building;
 
     @Override
     public String toString() {

@@ -17,6 +17,7 @@ package org.thingsboard.server.dao.megadevice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thingsboard.server.common.data.Megadevice;
 import org.thingsboard.server.dao.building.BuildingJpaRepository;
 import org.thingsboard.server.dao.model.sql.MegaDeviceEntity;
 import org.thingsboard.server.dao.model.sql.RoomEntity;
@@ -33,8 +34,8 @@ public class MegaDeviceServiceImpl implements MegaDeviceService {
     private RoomJpaRepository roomJpaRepository;
 
     @Override
-    public MegaDeviceEntity save(MegaDeviceEntity megaDeviceEntity, Integer roomId) {
-        megaDeviceEntity.setRoomEntity(roomJpaRepository.getOne(roomId));
-        return megaDeviceJpaRepository.save(megaDeviceEntity);
+    public Megadevice save(Megadevice megadevice, Integer roomId) {
+        megadevice.setRoom(roomJpaRepository.getOne(roomId));
+        return megaDeviceJpaRepository.save(megadevice);
     }
 }

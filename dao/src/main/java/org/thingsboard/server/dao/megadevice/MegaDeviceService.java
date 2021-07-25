@@ -15,9 +15,8 @@
  */
 package org.thingsboard.server.dao.megadevice;
 
-import org.thingsboard.server.dao.model.sql.MegaDeviceEntity;
-import org.thingsboard.server.dao.model.sql.RoomEntity;
+import org.thingsboard.server.common.data.Megadevice;
 
 public interface MegaDeviceService {
-    MegaDeviceEntity save(MegaDeviceEntity megaDeviceEntity, Integer roomId);
+    Megadevice save(Megadevice megaDeviceEntity, Integer roomId);
 }
