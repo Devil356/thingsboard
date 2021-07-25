@@ -17,6 +17,7 @@ package org.thingsboard.server.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.thingsboard.server.common.data.Megadevice;
 import org.thingsboard.server.common.data.exception.ThingsboardException;
 import org.thingsboard.server.dao.model.sql.MegaDeviceEntity;
 import org.thingsboard.server.dao.model.sql.RoomEntity;
@@ -30,11 +31,11 @@ public class MegaDeviceController extends BaseController {
     @PreAuthorize("hasAnyAuthority('TENANT_ADMIN', 'CUSTOMER_USER')")
     @RequestMapping(value = "/{id}/megadevices", method = RequestMethod.POST)
     @ResponseBody
-    public MegaDeviceEntity saveMegaDevice(@RequestBody MegaDeviceEntity entity, @PathVariable int id) throws ThingsboardException {
+    public Megadevice saveMegaDevice(@RequestBody Megadevice entity, @PathVariable int id) throws ThingsboardException {
         try {
-            entity.setTenantId(getCurrentUser().getTenantId().getId());
+            entity.setTenantId(getCurrentUser().getTenantId());
             entity.setCreatedTime(0L);
-            MegaDeviceEntity e = checkNotNull(megaDeviceService.save(entity, id));
+            Megadevice e = checkNotNull(megaDeviceService.save(entity, id));
             return e;
         } catch (Exception e) {
 

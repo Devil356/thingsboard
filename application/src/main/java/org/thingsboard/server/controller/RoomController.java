@@ -17,6 +17,7 @@ package org.thingsboard.server.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.thingsboard.server.common.data.Room;
 import org.thingsboard.server.common.data.exception.ThingsboardException;
 import org.thingsboard.server.dao.model.sql.BuildingEntity;
 import org.thingsboard.server.dao.model.sql.RoomEntity;
@@ -30,11 +31,11 @@ public class RoomController extends BaseController {
     @PreAuthorize("hasAnyAuthority('TENANT_ADMIN', 'CUSTOMER_USER')")
     @RequestMapping(value = "/{id}/rooms", method = RequestMethod.POST)
     @ResponseBody
-    public RoomEntity saveRoom(@RequestBody RoomEntity entity, @PathVariable int id) throws ThingsboardException {
+    public Room saveRoom(@RequestBody Room entity, @PathVariable int id) throws ThingsboardException {
         try {
-            entity.setTenantId(getCurrentUser().getTenantId().getId());
+            entity.setTenantId(getCurrentUser().getTenantId());
             entity.setCreatedTime(0L);
-            RoomEntity e = checkNotNull(roomService.save(entity, id));
+            Room e = checkNotNull(roomService.save(entity, id));
             return e;
         } catch (Exception e) {
 
