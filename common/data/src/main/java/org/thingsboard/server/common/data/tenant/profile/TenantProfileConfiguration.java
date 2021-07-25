@@ -43,4 +43,5 @@ public interface TenantProfileConfiguration {
     @JsonIgnore
     int getMaxRuleNodeExecsPerMessage();
 
+
 }

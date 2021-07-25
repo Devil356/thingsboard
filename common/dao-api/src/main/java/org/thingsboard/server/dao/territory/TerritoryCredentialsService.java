@@ -15,15 +15,19 @@
  */
 package org.thingsboard.server.dao.territory;
 
-import org.thingsboard.server.common.data.Territory;
 import org.thingsboard.server.common.data.id.TenantId;
 import org.thingsboard.server.common.data.id.TerritoryId;
-import org.thingsboard.server.dao.model.sql.TerritoryEntity;
+import org.thingsboard.server.common.data.security.TerritoryCredentials;
 
-public interface TerritoryService {
-    Territory saveTerritory(Territory territory);
+public interface TerritoryCredentialsService {
 
-    Territory saveTerritoryWithAccessToken(Territory entity, String accessToken);
+    TerritoryCredentials findTerritoryCredentialsByTerritoryId(TenantId tenantId, TerritoryId territoryId);
 
-    Territory findTerritoryById(TenantId tenantId, TerritoryId territoryId);
+    TerritoryCredentials findTerritoryCredentialsByCredentialsId(String credentialsId);
+
+    TerritoryCredentials updateTerritoryCredentials(TenantId tenantId, TerritoryCredentials territoryCredentials);
+
+    TerritoryCredentials createTerritoryCredentials(TenantId tenantId, TerritoryCredentials territoryCredentials);
+
+    void deleteTerritoryCredentials(TenantId tenantId, TerritoryCredentials territoryCredentials);
 }

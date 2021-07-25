@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.thingsboard.server.dao.territory;
+package org.thingsboard.server.common.data.security;
 
-import org.thingsboard.server.common.data.Territory;
-import org.thingsboard.server.common.data.id.TenantId;
-import org.thingsboard.server.common.data.id.TerritoryId;
-import org.thingsboard.server.dao.model.sql.TerritoryEntity;
+/**
+ * TODO: This is a temporary name. TerritoryCredentialsId is resereved in dao layer
+ */
+public interface TerritoryCredentialsFilter {
 
-public interface TerritoryService {
-    Territory saveTerritory(Territory territory);
+    String getCredentialsId();
 
-    Territory saveTerritoryWithAccessToken(Territory entity, String accessToken);
+    TerritoryCredentialsType getCredentialsType();
 
-    Territory findTerritoryById(TenantId tenantId, TerritoryId territoryId);
 }

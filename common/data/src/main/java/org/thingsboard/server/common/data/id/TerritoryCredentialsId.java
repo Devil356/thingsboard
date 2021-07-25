@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.thingsboard.server.dao.territory;
+package org.thingsboard.server.common.data.id;
 
-import org.thingsboard.server.common.data.Territory;
-import org.thingsboard.server.common.data.id.TenantId;
-import org.thingsboard.server.common.data.id.TerritoryId;
-import org.thingsboard.server.dao.model.sql.TerritoryEntity;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public interface TerritoryService {
-    Territory saveTerritory(Territory territory);
+import java.util.UUID;
 
-    Territory saveTerritoryWithAccessToken(Territory entity, String accessToken);
+public class TerritoryCredentialsId extends UUIDBased {
 
-    Territory findTerritoryById(TenantId tenantId, TerritoryId territoryId);
+    @JsonCreator
+    public TerritoryCredentialsId(@JsonProperty("id") UUID id) {
+        super(id);
+    }
 }

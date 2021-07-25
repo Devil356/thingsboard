@@ -42,6 +42,7 @@ public class ModelConstants {
     public static final String TENANT_ID_PROPERTY = "tenant_id";
     public static final String CUSTOMER_ID_PROPERTY = "customer_id";
     public static final String DEVICE_ID_PROPERTY = "device_id";
+    public static final String TERRITORY_ID_PROPERTY = "territory_id";
     public static final String TITLE_PROPERTY = "title";
     public static final String ALIAS_PROPERTY = "alias";
     public static final String SEARCH_TEXT_PROPERTY = "search_text";
@@ -327,6 +328,12 @@ public class ModelConstants {
 
     public static final String DEVICE_CREDENTIALS_BY_DEVICE_COLUMN_FAMILY_NAME = "device_credentials_by_device";
     public static final String DEVICE_CREDENTIALS_BY_CREDENTIALS_ID_COLUMN_FAMILY_NAME = "device_credentials_by_credentials_id";
+
+    public static final String TERRITORY_CREDENTIALS_COLUMN_FAMILY_NAME = "territory_credentials";
+    public static final String TERRITORY_CREDENTIALS_TERRITORY_ID_PROPERTY = TERRITORY_ID_PROPERTY;
+    public static final String TERRITORY_CREDENTIALS_CREDENTIALS_TYPE_PROPERTY = "credentials_type";
+    public static final String TERRITORY_CREDENTIALS_CREDENTIALS_ID_PROPERTY = "credentials_id";
+    public static final String TERRITORY_CREDENTIALS_CREDENTIALS_VALUE_PROPERTY = "credentials_value";
 
     /**
      * Cassandra widgets_bundle constants.

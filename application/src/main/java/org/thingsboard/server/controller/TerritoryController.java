@@ -18,6 +18,7 @@ package org.thingsboard.server.controller;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.thingsboard.server.common.data.Territory;
 import org.thingsboard.server.common.data.exception.ThingsboardException;
 import org.thingsboard.server.dao.model.sql.TerritoryEntity;
 import org.thingsboard.server.queue.util.TbCoreComponent;
@@ -28,13 +29,31 @@ import org.thingsboard.server.queue.util.TbCoreComponent;
 public class TerritoryController extends BaseController {
 
     @PreAuthorize("hasAnyAuthority('TENANT_ADMIN', 'CUSTOMER_USER')")
+    @RequestMapping(value = "old/territories", method = RequestMethod.POST)
+    @ResponseBody
+    public Territory saveTerritory(@RequestBody Territory territory) throws ThingsboardException {
+        try {
+            territory.setTenantId(getCurrentUser().getTenantId());
+            territory.setCreatedTime(0L);
+            Territory savedTerritory = checkNotNull(territoryService.saveTerritory(territory));
+            return savedTerritory;
+        } catch (Exception e) {
+
+            throw handleException(e);
+        }
+    }
+
+    @PreAuthorize("hasAnyAuthority('TENANT_ADMIN', 'CUSTOMER_USER')")
     @RequestMapping(value = "/territories", method = RequestMethod.POST)
     @ResponseBody
-    public TerritoryEntity saveTerritory(@RequestBody TerritoryEntity territory) throws ThingsboardException {
+    public Territory saveTerritoryWithAccessToken(
+            @RequestBody Territory entity,
+            @RequestParam(name = "accessToken") String accessToken
+    ) throws ThingsboardException {
         try {
-            territory.setTenantId(getCurrentUser().getTenantId().getId());
-            territory.setCreatedTime(0L);
-            TerritoryEntity savedTerritory = checkNotNull(territoryService.saveTerritory(territory));
+            entity.setTenantId(getCurrentUser().getTenantId());
+            entity.setCreatedTime(0L);
+            Territory savedTerritory = checkNotNull(territoryService.saveTerritoryWithAccessToken(entity, accessToken));
             return savedTerritory;
         } catch (Exception e) {
 

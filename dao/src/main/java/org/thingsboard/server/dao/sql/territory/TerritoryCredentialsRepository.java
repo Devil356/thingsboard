@@ -13,17 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.thingsboard.server.dao.territory;
+package org.thingsboard.server.dao.sql.territory;
 
-import org.thingsboard.server.common.data.Territory;
-import org.thingsboard.server.common.data.id.TenantId;
-import org.thingsboard.server.common.data.id.TerritoryId;
-import org.thingsboard.server.dao.model.sql.TerritoryEntity;
+import org.springframework.data.repository.CrudRepository;
+import org.thingsboard.server.dao.model.sql.DeviceCredentialsEntity;
 
-public interface TerritoryService {
-    Territory saveTerritory(Territory territory);
+import java.util.UUID;
 
-    Territory saveTerritoryWithAccessToken(Territory entity, String accessToken);
+public interface TerritoryCredentialsRepository extends CrudRepository<DeviceCredentialsEntity, UUID> {
 
-    Territory findTerritoryById(TenantId tenantId, TerritoryId territoryId);
+    DeviceCredentialsEntity findByDeviceId(UUID deviceId);
+
+    DeviceCredentialsEntity findByCredentialsId(String credentialsId);
 }

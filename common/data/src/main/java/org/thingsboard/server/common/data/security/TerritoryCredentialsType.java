@@ -13,17 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.thingsboard.server.dao.territory;
+package org.thingsboard.server.common.data.security;
 
-import org.thingsboard.server.common.data.Territory;
-import org.thingsboard.server.common.data.id.TenantId;
-import org.thingsboard.server.common.data.id.TerritoryId;
-import org.thingsboard.server.dao.model.sql.TerritoryEntity;
+public enum TerritoryCredentialsType {
 
-public interface TerritoryService {
-    Territory saveTerritory(Territory territory);
+    ACCESS_TOKEN,
+    X509_CERTIFICATE,
+    MQTT_BASIC
 
-    Territory saveTerritoryWithAccessToken(Territory entity, String accessToken);
-
-    Territory findTerritoryById(TenantId tenantId, TerritoryId territoryId);
 }

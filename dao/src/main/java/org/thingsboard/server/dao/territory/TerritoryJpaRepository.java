@@ -15,23 +15,13 @@
  */
 package org.thingsboard.server.dao.territory;
 
-import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.thingsboard.server.dao.model.sql.TerritoryEntity;
+import org.thingsboard.server.common.data.Territory;
 
 @Repository
 @Transactional
-public interface TerritoryJpaRepository extends JpaRepository<TerritoryEntity, Integer> {
+public interface TerritoryJpaRepository extends JpaRepository<Territory, Integer> {
 
-//    /**
-//     * Save or update territory object
-//     *
-//     * @param territory the territory object
-//     * @return saved territory object
-//     */
-//    @SuppressWarnings("unchecked")
-//    @NotNull
-//    TerritoryEntity save(@NotNull TerritoryEntity territory);
 }

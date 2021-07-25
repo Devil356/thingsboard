@@ -17,13 +17,23 @@ package org.thingsboard.server.dao.territory;
 
 import org.thingsboard.server.common.data.Territory;
 import org.thingsboard.server.common.data.id.TenantId;
-import org.thingsboard.server.common.data.id.TerritoryId;
-import org.thingsboard.server.dao.model.sql.TerritoryEntity;
+import org.thingsboard.server.dao.Dao;
+import org.thingsboard.server.dao.TenantEntityDao;
 
-public interface TerritoryService {
-    Territory saveTerritory(Territory territory);
+import java.util.UUID;
 
-    Territory saveTerritoryWithAccessToken(Territory entity, String accessToken);
+/**
+ * The Interface TerritoryDao.
+ *
+ */
+public interface TerritoryDao extends Dao<Territory>, TenantEntityDao {
+    /**
+     * Save or update territory object
+     *
+     * @param territory the territory object
+     * @return saved territory object
+     */
+    Territory save(TenantId tenantId, Territory territory);
 
-    Territory findTerritoryById(TenantId tenantId, TerritoryId territoryId);
+    Territory findTerritoryByTenantIdAndId(TenantId tenantId, UUID id);
 }

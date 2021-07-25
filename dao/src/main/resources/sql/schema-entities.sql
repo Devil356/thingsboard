@@ -256,16 +256,27 @@ CREATE TABLE IF NOT EXISTS relation (
 CREATE SEQUENCE IF NOT EXISTS global_seq START WITH 100000;
 
 CREATE TABLE IF NOT EXISTS territory (
-    id INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    id uuid NOT NULL CONSTRAINT territory_pkey PRIMARY KEY,
     created_time bigint NOT NULL,
     name varchar(255),
     tenant_id uuid,
     CONSTRAINT territory_name_unq_key UNIQUE (tenant_id, name)
 );
 
+CREATE TABLE IF NOT EXISTS territory_credentials (
+    id uuid NOT NULL CONSTRAINT territory_credentials_pkey PRIMARY KEY,
+    created_time bigint NOT NULL,
+    credentials_id varchar,
+    credentials_type varchar(255),
+    credentials_value varchar,
+    territory_id uuid,
+    CONSTRAINT territory_credentials_id_unq_key UNIQUE (credentials_id),
+    CONSTRAINT territory_credentials_territory_id_unq_key UNIQUE (territory_id)
+    );
+
 CREATE TABLE IF NOT EXISTS building (
     id INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    territory_id INTEGER NOT NULL,
+    territory_id uuid NOT NULL,
     created_time bigint NOT NULL,
     name varchar(255),
     tenant_id uuid,

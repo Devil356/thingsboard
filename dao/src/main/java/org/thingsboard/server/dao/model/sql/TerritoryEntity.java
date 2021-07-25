@@ -18,6 +18,12 @@ package org.thingsboard.server.dao.model.sql;
 import lombok.Data;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
+import org.thingsboard.server.common.data.HasTenantId;
+import org.thingsboard.server.common.data.SearchTextBasedWithAdditionalInfo;
+import org.thingsboard.server.common.data.Territory;
+import org.thingsboard.server.common.data.id.DeviceId;
+import org.thingsboard.server.common.data.id.TenantId;
+import org.thingsboard.server.common.data.id.TerritoryId;
 import org.thingsboard.server.dao.model.ModelConstants;
 import org.thingsboard.server.dao.util.mapping.JsonBinaryType;
 import org.thingsboard.server.dao.util.mapping.JsonStringType;
@@ -33,39 +39,18 @@ import java.util.UUID;
         @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
 @Table(name = ModelConstants.TERRITORY_COLUMN_FAMILY_NAME)
-public class TerritoryEntity {
-
-    @Id
-    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = 100000)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
-    @Column(name = ModelConstants.ID_PROPERTY)
-    private Integer id;
-
-    @Column(name = ModelConstants.CREATED_TIME_PROPERTY)
-    private long createdTime;
-
-    @Column(name = ModelConstants.TERRITORY_TENANT_ID_PROPERTY, columnDefinition = "uuid")
-    private UUID tenantId;
-
-    @Column(name = ModelConstants.TERRITORY_NAME_PROPERTY)
-    private String name;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "territoryEntity")
-    @OrderBy("name DESC")
-    List<BuildingEntity> buildingEntities;
+public class TerritoryEntity extends AbstractTerritoryEntity<Territory> {
 
     public TerritoryEntity() {
+        super();
     }
 
-    public TerritoryEntity(long createdTime, UUID tenantId, String name) {
-        this.createdTime = createdTime;
-        this.tenantId = tenantId;
-        this.name = name;
+    public TerritoryEntity(Territory territory) {
+        super(territory);
     }
 
-    public void setCreatedTime(long createdTime) {
-        if (createdTime > 0) {
-            this.createdTime = createdTime;
-        }
+    @Override
+    public Territory toData() {
+        return null;
     }
 }
