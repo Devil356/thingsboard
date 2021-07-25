@@ -17,12 +17,13 @@ package org.thingsboard.server.dao.sql.territory;
 
 import org.springframework.data.repository.CrudRepository;
 import org.thingsboard.server.dao.model.sql.DeviceCredentialsEntity;
+import org.thingsboard.server.dao.model.sql.TerritoryCredentialsEntity;
 
 import java.util.UUID;
 
-public interface TerritoryCredentialsRepository extends CrudRepository<DeviceCredentialsEntity, UUID> {
+public interface TerritoryCredentialsRepository extends CrudRepository<TerritoryCredentialsEntity, UUID> {
 
-    DeviceCredentialsEntity findByDeviceId(UUID deviceId);
+    TerritoryCredentialsEntity findByDeviceId(UUID deviceId);
 
-    DeviceCredentialsEntity findByCredentialsId(String credentialsId);
+    TerritoryCredentialsEntity findByCredentialsId(String credentialsId);
 }

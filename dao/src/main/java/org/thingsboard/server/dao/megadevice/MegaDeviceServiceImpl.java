@@ -24,6 +24,8 @@ import org.thingsboard.server.dao.model.sql.RoomEntity;
 import org.thingsboard.server.dao.room.RoomJpaRepository;
 import org.thingsboard.server.dao.room.RoomService;
 
+import java.util.UUID;
+
 @Service
 public class MegaDeviceServiceImpl implements MegaDeviceService {
 
@@ -34,8 +36,8 @@ public class MegaDeviceServiceImpl implements MegaDeviceService {
     private RoomJpaRepository roomJpaRepository;
 
     @Override
-    public Megadevice save(Megadevice megadevice, Integer roomId) {
-        megadevice.setRoom(roomJpaRepository.getOne(roomId.longValue()));
+    public Megadevice save(Megadevice megadevice, UUID roomId) {
+        megadevice.setRoom(roomJpaRepository.getOne(roomId));
         return megaDeviceJpaRepository.save(megadevice);
     }
 }

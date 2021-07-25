@@ -23,6 +23,8 @@ import org.thingsboard.server.dao.model.sql.BuildingEntity;
 import org.thingsboard.server.dao.model.sql.RoomEntity;
 import org.thingsboard.server.dao.territory.TerritoryJpaRepository;
 
+import java.util.UUID;
+
 @Service
 public class RoomServiceImpl implements RoomService {
 
@@ -33,8 +35,8 @@ public class RoomServiceImpl implements RoomService {
     private BuildingJpaRepository buildingJpaRepository;
 
     @Override
-    public Room save(Room room, Integer buildingId) {
-        room.setBuilding(buildingJpaRepository.getOne(buildingId.longValue()));
+    public Room save(Room room, UUID buildingId) {
+        room.setBuilding(buildingJpaRepository.getOne(buildingId));
         return roomJpaRepository.save(room);
     }
 }

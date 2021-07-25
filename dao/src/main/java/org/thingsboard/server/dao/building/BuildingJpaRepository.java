@@ -26,6 +26,6 @@ import java.util.UUID;
 
 @Repository
 @Transactional
-public interface BuildingJpaRepository extends JpaRepository<Building, Long> {
+public interface BuildingJpaRepository extends JpaRepository<Building, UUID> {
 
 }

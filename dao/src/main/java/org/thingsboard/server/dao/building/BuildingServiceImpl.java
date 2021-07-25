@@ -22,6 +22,8 @@ import org.thingsboard.server.common.data.Territory;
 import org.thingsboard.server.dao.model.sql.BuildingEntity;
 import org.thingsboard.server.dao.territory.TerritoryJpaRepository;
 
+import java.util.UUID;
+
 @Service
 public class BuildingServiceImpl implements BuildingService {
 
@@ -32,8 +34,8 @@ public class BuildingServiceImpl implements BuildingService {
     private TerritoryJpaRepository territoryJpaRepository;
 
     @Override
-    public Building save(Building building, Integer territoryId) {
-        building.setTerritory(territoryJpaRepository.getOne(territoryId.longValue()));
+    public Building save(Building building, UUID territoryId) {
+        building.setTerritory(territoryJpaRepository.getOne(territoryId));
         return buildingJpaRepository.save(building);
     }
 }

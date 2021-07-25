@@ -26,6 +26,6 @@ import java.util.UUID;
 
 @Repository
 @Transactional
-public interface MegaDeviceJpaRepository extends JpaRepository<Megadevice, Long> {
+public interface MegaDeviceJpaRepository extends JpaRepository<Megadevice, UUID> {
 
 }

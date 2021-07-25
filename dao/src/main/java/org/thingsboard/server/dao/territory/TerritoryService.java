@@ -23,7 +23,7 @@ import org.thingsboard.server.dao.model.sql.TerritoryEntity;
 public interface TerritoryService {
     Territory saveTerritory(Territory territory);
 
-    Territory saveTerritoryWithAccessToken(Territory entity, String accessToken);
+    Territory saveTerritoryWithAccessToken(Territory territory, String accessToken);
 
     Territory findTerritoryById(TenantId tenantId, TerritoryId territoryId);
 }

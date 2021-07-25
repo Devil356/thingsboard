@@ -17,6 +17,8 @@ package org.thingsboard.server.dao.megadevice;
 
 import org.thingsboard.server.common.data.Megadevice;
 
+import java.util.UUID;
+
 public interface MegaDeviceService {
-    Megadevice save(Megadevice megaDeviceEntity, Integer roomId);
+    Megadevice save(Megadevice megaDeviceEntity, UUID roomId);
 }
