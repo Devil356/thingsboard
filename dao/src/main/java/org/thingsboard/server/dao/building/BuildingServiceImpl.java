@@ -33,7 +33,7 @@ public class BuildingServiceImpl implements BuildingService {
 
     @Override
     public Building save(Building building, Integer territoryId) {
-        building.setTerritory(territoryJpaRepository.getOne(territoryId));
+        building.setTerritory(territoryJpaRepository.getOne(territoryId.longValue()));
         return buildingJpaRepository.save(building);
     }
 }
