@@ -21,7 +21,9 @@ import org.thingsboard.server.common.data.Building;
 import org.thingsboard.server.common.data.Territory;
 import org.thingsboard.server.dao.model.sql.BuildingEntity;
 
+import java.util.UUID;
+
 @Repository
-public interface BuildingJpaRepository extends JpaRepository<Building, Integer> {
+public interface BuildingJpaRepository extends JpaRepository<Building, UUID> {
 
 }

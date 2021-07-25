@@ -18,10 +18,10 @@ package org.thingsboard.server.dao.room;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.thingsboard.server.common.data.Room;
-import org.thingsboard.server.dao.model.sql.BuildingEntity;
-import org.thingsboard.server.dao.model.sql.RoomEntity;
+
+import java.util.UUID;
 
 @Repository
-public interface RoomJpaRepository extends JpaRepository<Room, Integer> {
+public interface RoomJpaRepository extends JpaRepository<Room, UUID> {
 
 }

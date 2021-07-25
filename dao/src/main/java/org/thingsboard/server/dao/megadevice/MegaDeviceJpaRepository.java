@@ -21,7 +21,9 @@ import org.thingsboard.server.common.data.Megadevice;
 import org.thingsboard.server.dao.model.sql.MegaDeviceEntity;
 import org.thingsboard.server.dao.model.sql.RoomEntity;
 
+import java.util.UUID;
+
 @Repository
-public interface MegaDeviceJpaRepository extends JpaRepository<Megadevice, Integer> {
+public interface MegaDeviceJpaRepository extends JpaRepository<Megadevice, UUID> {
 
 }
