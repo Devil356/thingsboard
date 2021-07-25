@@ -17,6 +17,7 @@ package org.thingsboard.server.dao.model.sql;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.thingsboard.server.common.data.Room;
 import org.thingsboard.server.common.data.Territory;
 import org.thingsboard.server.dao.model.BaseSqlEntity;
 import org.thingsboard.server.dao.model.ModelConstants;
@@ -28,7 +29,7 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @MappedSuperclass
-public abstract class AbstractTerritoryEntity<T extends Territory> extends BaseSqlEntity<T> {
+public abstract class AbstractTerritoryEntity extends AbstractEntity<Territory> {
 
     @Column(name = ModelConstants.TERRITORY_TENANT_ID_PROPERTY)
     private UUID tenantId;
@@ -40,26 +41,11 @@ public abstract class AbstractTerritoryEntity<T extends Territory> extends BaseS
     @OrderBy("name DESC")
     List<BuildingEntity> buildingEntities;
 
-    public AbstractTerritoryEntity() {
-        super();
-    }
-
     public AbstractTerritoryEntity(Territory territory) {
-        if (territory.getId() != null) {
-            this.setUuid(territory.getUuidId());
-        }
-        this.setCreatedTime(territory.getCreatedTime());
-        if (territory.getTenantId() != null) {
-            this.tenantId = territory.getTenantId().getId();
-        }
-        this.name = territory.getName();
+        super(territory);
     }
 
-    public AbstractTerritoryEntity(TerritoryEntity territoryEntity) {
-        this.setId(territoryEntity.getId());
-        this.setCreatedTime(territoryEntity.getCreatedTime());
-        this.tenantId = territoryEntity.getTenantId();
-        this.name = territoryEntity.getName();
-    }
+    public AbstractTerritoryEntity() {
 
+    }
 }

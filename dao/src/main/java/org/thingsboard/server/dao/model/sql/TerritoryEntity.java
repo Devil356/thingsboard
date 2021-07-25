@@ -19,9 +19,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
-import org.thingsboard.server.common.data.HasTenantId;
-import org.thingsboard.server.common.data.SearchTextBasedWithAdditionalInfo;
-import org.thingsboard.server.common.data.Territory;
+import org.thingsboard.server.common.data.*;
 import org.thingsboard.server.common.data.id.DeviceId;
 import org.thingsboard.server.common.data.id.TenantId;
 import org.thingsboard.server.common.data.id.TerritoryId;
@@ -41,8 +39,7 @@ import java.util.UUID;
         @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
 @Table(name = ModelConstants.TERRITORY_COLUMN_FAMILY_NAME)
-public class TerritoryEntity extends AbstractTerritoryEntity<Territory> {
-
+public class TerritoryEntity extends AbstractTerritoryEntity {
     public TerritoryEntity() {
         super();
     }
@@ -53,6 +50,6 @@ public class TerritoryEntity extends AbstractTerritoryEntity<Territory> {
 
     @Override
     public Territory toData() {
-        return null;
+        return super.toData();
     }
 }

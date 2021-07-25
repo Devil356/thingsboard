@@ -16,10 +16,13 @@
 package org.thingsboard.server.dao.model.sql;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
+import org.thingsboard.server.common.data.Building;
+import org.thingsboard.server.common.data.Device;
 import org.thingsboard.server.common.data.Territory;
 import org.thingsboard.server.dao.model.ModelConstants;
 import org.thingsboard.server.dao.util.mapping.JsonBinaryType;
@@ -29,6 +32,7 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @TypeDefs({
@@ -36,43 +40,17 @@ import java.util.UUID;
         @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
 @Table(name = ModelConstants.BUILDING_COLUMN_FAMILY_NAME)
-public class BuildingEntity {
-    @Id
-    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = 100000)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
-    @Column(name = ModelConstants.ID_PROPERTY)
-    private Integer id;
-
-    @Column(name = ModelConstants.CREATED_TIME_PROPERTY)
-    private long createdTime;
-
-    @Column(name = ModelConstants.BUILDING_TENANT_ID_PROPERTY, columnDefinition = "uuid")
-    private UUID tenantId;
-
-    @Column(name = ModelConstants.BUILDING_NAME_PROPERTY)
-    private String name;
-
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "territory_id", nullable = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Territory territory;
-
-    @OneToMany(mappedBy = "buildingEntity", fetch = FetchType.EAGER)
-    @OrderBy("name DESC")
-    private List<RoomEntity> roomEntityList;
-
+public class BuildingEntity extends AbstractBuildingEntity {
     public BuildingEntity() {
+        super();
     }
 
-    public BuildingEntity(long createdTime, UUID tenantId, String name) {
-        this.createdTime = createdTime;
-        this.tenantId = tenantId;
-        this.name = name;
+    public BuildingEntity(Building building) {
+        super(building);
     }
 
-    public void setCreatedTime(long createdTime) {
-        if (createdTime > 0) {
-            this.createdTime = createdTime;
-        }
+    @Override
+    public Building toData() {
+        return super.toData();
     }
 }

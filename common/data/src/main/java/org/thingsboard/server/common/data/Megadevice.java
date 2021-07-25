@@ -17,19 +17,17 @@ package org.thingsboard.server.common.data;
 
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
-import org.thingsboard.server.common.data.id.TenantId;
-import org.thingsboard.server.common.data.id.TerritoryId;
 
 @EqualsAndHashCode(callSuper = true)
 @Slf4j
-public class Territory extends AbstractObject {
+public class Megadevice extends AbstractObject {
 
     private static final long serialVersionUID = 1L;
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Territory [tenantId=");
+        builder.append("Megadevice [tenantId=");
         builder.append(getTenantId());
         builder.append(", name=");
         builder.append(getName());

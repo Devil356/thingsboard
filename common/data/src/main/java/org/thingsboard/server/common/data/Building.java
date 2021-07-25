@@ -22,14 +22,14 @@ import org.thingsboard.server.common.data.id.TerritoryId;
 
 @EqualsAndHashCode(callSuper = true)
 @Slf4j
-public class Territory extends AbstractObject {
+public class Building extends AbstractObject {
 
     private static final long serialVersionUID = 1L;
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Territory [tenantId=");
+        builder.append("Building [tenantId=");
         builder.append(getTenantId());
         builder.append(", name=");
         builder.append(getName());

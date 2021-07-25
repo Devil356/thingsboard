@@ -15,15 +15,11 @@
  */
 package org.thingsboard.server.common.data.id;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.thingsboard.server.common.data.EntityType;
-
 import java.util.UUID;
 
-public class TerritoryId extends AbstractId {
+public class MegadeviceId extends AbstractId {
 
-    public TerritoryId(UUID id) {
+    public MegadeviceId(UUID id) {
         super(id);
     }
 }

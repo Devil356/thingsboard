@@ -17,27 +17,51 @@ package org.thingsboard.server.common.data;
 
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
+import org.thingsboard.server.common.data.id.AbstractId;
 import org.thingsboard.server.common.data.id.TenantId;
 import org.thingsboard.server.common.data.id.TerritoryId;
 
 @EqualsAndHashCode(callSuper = true)
 @Slf4j
-public class Territory extends AbstractObject {
+public abstract class AbstractObject  extends SearchTextBasedWithAdditionalInfo<AbstractId> implements HasName, HasTenantId {
 
-    private static final long serialVersionUID = 1L;
+    private TenantId tenantId;
+    private String name;
+
+    public AbstractObject() {
+        super();
+    }
+
+    public AbstractObject(AbstractId id) {
+        super(id);
+    }
+
+    public AbstractObject(AbstractObject object) {
+        super(object);
+        this.tenantId = object.getTenantId();
+        this.name = object.getName();
+    }
+
+    public void setTenantId(TenantId tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Territory [tenantId=");
-        builder.append(getTenantId());
-        builder.append(", name=");
-        builder.append(getName());
-        builder.append(", createdTime=");
-        builder.append(createdTime);
-        builder.append(", id=");
-        builder.append(id);
-        builder.append("]");
-        return builder.toString();
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public TenantId getTenantId() {
+        return tenantId;
+    }
+
+    @Override
+    public String getSearchText() {
+        return getName();
     }
 }

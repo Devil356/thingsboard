@@ -20,6 +20,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
+import org.thingsboard.server.common.data.Building;
+import org.thingsboard.server.common.data.Megadevice;
 import org.thingsboard.server.dao.model.ModelConstants;
 import org.thingsboard.server.dao.util.mapping.JsonBinaryType;
 import org.thingsboard.server.dao.util.mapping.JsonStringType;
@@ -34,39 +36,17 @@ import java.util.UUID;
         @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
 @Table(name = ModelConstants.MEGA_DEVICE_COLUMN_FAMILY_NAME)
-public class MegaDeviceEntity {
-    @Id
-    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = 100000)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
-    @Column(name = ModelConstants.ID_PROPERTY)
-    private Integer id;
-
-    @Column(name = ModelConstants.CREATED_TIME_PROPERTY)
-    private long createdTime;
-
-    @Column(name = ModelConstants.MEGA_DEVICE_TENANT_ID_PROPERTY, columnDefinition = "uuid")
-    private UUID tenantId;
-
-    @Column(name = ModelConstants.MEGA_DEVICE_NAME_PROPERTY)
-    private String name;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "room_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private RoomEntity roomEntity;
-
+public class MegaDeviceEntity extends AbstractMegadeviceEntity{
     public MegaDeviceEntity() {
+        super();
     }
 
-    public MegaDeviceEntity(long createdTime, UUID tenantId, String name) {
-        this.createdTime = createdTime;
-        this.tenantId = tenantId;
-        this.name = name;
+    public MegaDeviceEntity(Megadevice megadevice) {
+        super(megadevice);
     }
 
-    public void setCreatedTime(long createdTime) {
-        if (createdTime > 0) {
-            this.createdTime = createdTime;
-        }
+    @Override
+    public Megadevice toData() {
+        return super.toData();
     }
 }
