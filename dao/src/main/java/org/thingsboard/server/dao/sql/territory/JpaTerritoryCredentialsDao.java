@@ -38,7 +38,7 @@ public class JpaTerritoryCredentialsDao extends JpaAbstractDao<TerritoryCredenti
 
     @Override
     public TerritoryCredentials findByTerritoryId(TenantId tenantId, UUID territoryId) {
-        return DaoUtil.getData(territoryCredentialsRepository.findByDeviceId(territoryId));
+        return DaoUtil.getData(territoryCredentialsRepository.findByTerritoryId(territoryId));
     }
 
     @Override
