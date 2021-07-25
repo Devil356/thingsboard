@@ -23,7 +23,7 @@ import java.util.UUID;
 
 public interface TerritoryCredentialsRepository extends CrudRepository<TerritoryCredentialsEntity, UUID> {
 
-    TerritoryCredentialsEntity findByDeviceId(UUID deviceId);
+    TerritoryCredentialsEntity findByTerritoryId(UUID territoryId);
 
     TerritoryCredentialsEntity findByCredentialsId(String credentialsId);
 }
