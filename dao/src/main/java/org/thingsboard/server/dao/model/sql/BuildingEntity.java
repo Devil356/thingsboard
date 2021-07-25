@@ -20,6 +20,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
+import org.thingsboard.server.common.data.Territory;
 import org.thingsboard.server.dao.model.ModelConstants;
 import org.thingsboard.server.dao.util.mapping.JsonBinaryType;
 import org.thingsboard.server.dao.util.mapping.JsonStringType;
@@ -51,10 +52,10 @@ public class BuildingEntity {
     @Column(name = ModelConstants.BUILDING_NAME_PROPERTY)
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "territory_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private TerritoryEntity territoryEntity;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "territory_id", nullable = false)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Territory territory;
 
     @OneToMany(mappedBy = "buildingEntity", fetch = FetchType.EAGER)
     @OrderBy("name DESC")

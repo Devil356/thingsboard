@@ -16,6 +16,7 @@
 package org.thingsboard.server.dao.model.sql;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 import org.thingsboard.server.common.data.HasTenantId;
@@ -32,6 +33,7 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @TypeDefs({

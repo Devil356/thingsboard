@@ -2,6 +2,7 @@ package org.thingsboard.server.dao.model.sql;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.thingsboard.server.common.data.Territory;
 import org.thingsboard.server.dao.model.BaseSqlEntity;
 import org.thingsboard.server.dao.model.ModelConstants;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @MappedSuperclass
 public abstract class AbstractTerritoryEntity<T extends Territory> extends BaseSqlEntity<T> {
