@@ -15,16 +15,20 @@
  */
 package org.thingsboard.server.common.data;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 import org.thingsboard.server.common.data.id.TenantId;
 import org.thingsboard.server.common.data.id.TerritoryId;
 
+@Data
 @EqualsAndHashCode(callSuper = true)
 @Slf4j
 public class Building extends AbstractObject {
 
     private static final long serialVersionUID = 1L;
+
+    private Territory territory;
 
     @Override
     public String toString() {

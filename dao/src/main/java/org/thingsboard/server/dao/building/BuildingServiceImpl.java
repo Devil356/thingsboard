@@ -17,6 +17,8 @@ package org.thingsboard.server.dao.building;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thingsboard.server.common.data.Building;
+import org.thingsboard.server.common.data.Territory;
 import org.thingsboard.server.dao.model.sql.BuildingEntity;
 import org.thingsboard.server.dao.territory.TerritoryJpaRepository;
 
@@ -30,8 +32,8 @@ public class BuildingServiceImpl implements BuildingService {
     private TerritoryJpaRepository territoryJpaRepository;
 
     @Override
-    public BuildingEntity save(BuildingEntity buildingEntity, Integer territoryId) {
-        buildingEntity.setTerritory(territoryJpaRepository.getOne(territoryId));
-        return buildingJpaRepository.save(buildingEntity);
+    public Building save(Building building, Integer territoryId) {
+        building.setTerritory(territoryJpaRepository.getOne(territoryId));
+        return buildingJpaRepository.save(building);
     }
 }

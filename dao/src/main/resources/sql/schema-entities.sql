@@ -275,7 +275,7 @@ CREATE TABLE IF NOT EXISTS territory_credentials (
     );
 
 CREATE TABLE IF NOT EXISTS building (
-    id INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    id uuid NOT NULL CONSTRAINT building_pkey PRIMARY KEY,
     territory_id uuid NOT NULL,
     created_time bigint NOT NULL,
     name varchar(255),
@@ -285,7 +285,7 @@ CREATE TABLE IF NOT EXISTS building (
 );
 
 CREATE TABLE IF NOT EXISTS room (
-    id INTEGER NOT NULL CONSTRAINT room_pkey PRIMARY KEY,
+    id uuid NOT NULL CONSTRAINT room_pkey PRIMARY KEY,
     building_id INTEGER NOT NULL,
     created_time bigint NOT NULL,
     name varchar(255),
@@ -295,7 +295,7 @@ CREATE TABLE IF NOT EXISTS room (
 );
 
 CREATE TABLE IF NOT EXISTS mega_device (
-    id INTEGER NOT NULL CONSTRAINT mega_device_pkey PRIMARY KEY,
+    id uuid NOT NULL CONSTRAINT mega_device_pkey PRIMARY KEY,
     room_id INTEGER NOT NULL,
     created_time bigint NOT NULL,
     name varchar(255),

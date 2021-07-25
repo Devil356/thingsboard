@@ -15,8 +15,9 @@
  */
 package org.thingsboard.server.dao.building;
 
+import org.thingsboard.server.common.data.Building;
 import org.thingsboard.server.dao.model.sql.BuildingEntity;
 
 public interface BuildingService {
-    BuildingEntity save(BuildingEntity buildingEntity, Integer territoryId);
+    Building save(Building buildingEntity, Integer territoryId);
 }
