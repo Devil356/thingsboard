@@ -17,6 +17,7 @@ package org.thingsboard.server.dao.megadevice;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.thingsboard.server.common.data.Megadevice;
 import org.thingsboard.server.dao.model.sql.MegaDeviceEntity;
 import org.thingsboard.server.dao.model.sql.RoomEntity;
@@ -24,6 +25,7 @@ import org.thingsboard.server.dao.model.sql.RoomEntity;
 import java.util.UUID;
 
 @Repository
-public interface MegaDeviceJpaRepository extends JpaRepository<Megadevice, UUID> {
+@Transactional
+public interface MegaDeviceJpaRepository extends JpaRepository<Megadevice, Long> {
 
 }

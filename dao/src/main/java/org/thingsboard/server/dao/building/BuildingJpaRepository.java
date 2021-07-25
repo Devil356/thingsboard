@@ -17,6 +17,7 @@ package org.thingsboard.server.dao.building;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.thingsboard.server.common.data.Building;
 import org.thingsboard.server.common.data.Territory;
 import org.thingsboard.server.dao.model.sql.BuildingEntity;
@@ -24,6 +25,7 @@ import org.thingsboard.server.dao.model.sql.BuildingEntity;
 import java.util.UUID;
 
 @Repository
-public interface BuildingJpaRepository extends JpaRepository<Building, UUID> {
+@Transactional
+public interface BuildingJpaRepository extends JpaRepository<Building, Long> {
 
 }

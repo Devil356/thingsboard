@@ -20,10 +20,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.thingsboard.server.common.data.Territory;
 
-import java.util.UUID;
-
 @Repository
 @Transactional
-public interface TerritoryJpaRepository extends JpaRepository<Territory, UUID> {
+public interface TerritoryJpaRepository extends JpaRepository<Territory, Long> {
 
 }
