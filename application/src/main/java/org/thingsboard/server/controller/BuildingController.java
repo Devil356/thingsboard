@@ -28,7 +28,7 @@ import org.thingsboard.server.queue.util.TbCoreComponent;
 public class BuildingController extends BaseController {
 
     @PreAuthorize("hasAnyAuthority('TENANT_ADMIN', 'CUSTOMER_USER')")
-    @RequestMapping(value = "/{id}/building", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/buildings", method = RequestMethod.POST)
     @ResponseBody
     public BuildingEntity saveBuilding(@RequestBody BuildingEntity entity, @PathVariable int id) throws ThingsboardException {
         try {

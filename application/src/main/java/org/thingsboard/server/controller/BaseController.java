@@ -96,10 +96,12 @@ import org.thingsboard.server.dao.device.DeviceService;
 import org.thingsboard.server.dao.entityview.EntityViewService;
 import org.thingsboard.server.dao.exception.DataValidationException;
 import org.thingsboard.server.dao.exception.IncorrectParameterException;
+import org.thingsboard.server.dao.megadevice.MegaDeviceService;
 import org.thingsboard.server.dao.model.ModelConstants;
 import org.thingsboard.server.dao.oauth2.OAuth2ConfigTemplateService;
 import org.thingsboard.server.dao.oauth2.OAuth2Service;
 import org.thingsboard.server.dao.relation.RelationService;
+import org.thingsboard.server.dao.room.RoomService;
 import org.thingsboard.server.dao.rule.RuleChainService;
 import org.thingsboard.server.dao.tenant.TbTenantProfileCache;
 import org.thingsboard.server.dao.tenant.TenantProfileService;
@@ -151,6 +153,12 @@ public abstract class BaseController {
 
     @Autowired
     protected BuildingService buildingService;
+
+    @Autowired
+    protected RoomService roomService;
+
+    @Autowired
+    protected MegaDeviceService megaDeviceService;
 
     @Autowired
     private ThingsboardErrorResponseHandler errorResponseHandler;

@@ -15,27 +15,27 @@
  */
 package org.thingsboard.server.controller;
 
-import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.thingsboard.server.common.data.exception.ThingsboardException;
-import org.thingsboard.server.dao.model.sql.TerritoryEntity;
+import org.thingsboard.server.dao.model.sql.BuildingEntity;
+import org.thingsboard.server.dao.model.sql.RoomEntity;
 import org.thingsboard.server.queue.util.TbCoreComponent;
 
 @RestController
 @TbCoreComponent
 @RequestMapping("/api")
-public class TerritoryController extends BaseController {
+public class RoomController extends BaseController {
 
     @PreAuthorize("hasAnyAuthority('TENANT_ADMIN', 'CUSTOMER_USER')")
-    @RequestMapping(value = "/territories", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/rooms", method = RequestMethod.POST)
     @ResponseBody
-    public TerritoryEntity saveTerritory(@RequestBody TerritoryEntity territory) throws ThingsboardException {
+    public RoomEntity saveRoom(@RequestBody RoomEntity entity, @PathVariable int id) throws ThingsboardException {
         try {
-            territory.setTenantId(getCurrentUser().getTenantId().getId());
-            territory.setCreatedTime(0L);
-            TerritoryEntity savedTerritory = checkNotNull(territoryService.saveTerritory(territory));
-            return savedTerritory;
+            entity.setTenantId(getCurrentUser().getTenantId().getId());
+            entity.setCreatedTime(0L);
+            RoomEntity e = checkNotNull(roomService.save(entity, id));
+            return e;
         } catch (Exception e) {
 
             throw handleException(e);
