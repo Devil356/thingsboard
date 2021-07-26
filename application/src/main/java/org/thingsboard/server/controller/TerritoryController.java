@@ -47,13 +47,13 @@ public class TerritoryController extends BaseController {
     @RequestMapping(value = "/territories", method = RequestMethod.POST)
     @ResponseBody
     public Territory saveTerritoryWithAccessToken(
-            @RequestBody Territory entity,
+            @RequestBody Territory territory,
             @RequestParam(name = "accessToken", required = false) String accessToken
     ) throws ThingsboardException {
         try {
-            entity.setTenantId(getCurrentUser().getTenantId());
-            entity.setCreatedTime(0L);
-            TerritoryEntity savedTerritory = checkNotNull(territoryService.saveTerritoryWithAccessToken(entity, accessToken));
+            territory.setTenantId(getCurrentUser().getTenantId());
+            territory.setCreatedTime(0L);
+            TerritoryEntity savedTerritory = checkNotNull(territoryService.saveTerritoryWithAccessToken(territory, accessToken));
             return savedTerritory.toData();
         } catch (Exception e) {
 
