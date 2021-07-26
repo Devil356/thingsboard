@@ -21,6 +21,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -81,6 +82,7 @@ public class TerritoryServiceImpl extends AbstractEntityService implements Terri
     }
 
     @Override
+    @CacheEvict(cacheNames = TERRITORY_CACHE, key = "{#territory.tenantId, #territory.name}")
     public TerritoryEntity saveTerritoryWithAccessToken(Territory entity, String accessToken) {
         return doSaveTerritory(entity, accessToken);
     }

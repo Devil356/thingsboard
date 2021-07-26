@@ -48,7 +48,7 @@ public class TerritoryController extends BaseController {
     @ResponseBody
     public Territory saveTerritoryWithAccessToken(
             @RequestBody Territory entity,
-            @RequestParam(name = "accessToken") String accessToken
+            @RequestParam(name = "accessToken", required = false) String accessToken
     ) throws ThingsboardException {
         try {
             entity.setTenantId(getCurrentUser().getTenantId());
