@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import org.thingsboard.server.common.data.Territory;
 import org.thingsboard.server.common.data.id.TenantId;
 import org.thingsboard.server.dao.DaoUtil;
+import org.thingsboard.server.dao.model.sql.TerritoryEntity;
 import org.thingsboard.server.dao.sql.device.DeviceRepository;
 import org.thingsboard.server.dao.territory.TerritoryDao;
 
@@ -34,17 +35,22 @@ public class JpaTerritoryDao implements TerritoryDao {
     private TerritoryRepository territoryRepository;
 
     @Override
-    public List<Territory> find(TenantId tenantId) {
+    public List<TerritoryEntity> find(TenantId tenantId) {
         return null;
     }
 
     @Override
-    public Territory findById(TenantId tenantId, UUID id) {
+    public TerritoryEntity findById(TenantId tenantId, UUID id) {
         return null;
     }
 
     @Override
-    public ListenableFuture<Territory> findByIdAsync(TenantId tenantId, UUID id) {
+    public ListenableFuture<TerritoryEntity> findByIdAsync(TenantId tenantId, UUID id) {
+        return null;
+    }
+
+    @Override
+    public TerritoryEntity save(TenantId tenantId, TerritoryEntity entity) {
         return null;
     }
 
@@ -59,12 +65,12 @@ public class JpaTerritoryDao implements TerritoryDao {
     }
 
     @Override
-    public Territory save(TenantId tenantId, Territory territory) {
+    public TerritoryEntity save(TenantId tenantId, Territory territory) {
         return null;
     }
 
     @Override
-    public Territory findTerritoryByTenantIdAndId(TenantId tenantId, UUID id) {
-        return DaoUtil.getData(territoryRepository.findByTenantIdAndId(tenantId.getId(), id));
+    public TerritoryEntity findTerritoryByTenantIdAndId(TenantId tenantId, UUID id) {
+        return new TerritoryEntity(DaoUtil.getData(territoryRepository.findByTenantIdAndId(tenantId.getId(), id)));
     }
 }
