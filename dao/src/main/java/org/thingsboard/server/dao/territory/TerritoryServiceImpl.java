@@ -19,20 +19,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.thingsboard.server.common.data.*;
-import org.thingsboard.server.common.data.id.*;
-import org.thingsboard.server.common.data.security.DeviceCredentials;
-import org.thingsboard.server.common.data.security.DeviceCredentialsType;
+import org.thingsboard.server.common.data.EntityType;
+import org.thingsboard.server.common.data.Tenant;
+import org.thingsboard.server.common.data.Territory;
+import org.thingsboard.server.common.data.id.TenantId;
+import org.thingsboard.server.common.data.id.TerritoryId;
 import org.thingsboard.server.common.data.security.TerritoryCredentials;
 import org.thingsboard.server.common.data.security.TerritoryCredentialsType;
 import org.thingsboard.server.common.data.tenant.profile.DefaultTenantProfileConfiguration;
-import org.thingsboard.server.dao.device.DeviceDao;
 import org.thingsboard.server.dao.entity.AbstractEntityService;
 import org.thingsboard.server.dao.exception.DataValidationException;
 import org.thingsboard.server.dao.model.sql.TerritoryEntity;
@@ -40,13 +38,6 @@ import org.thingsboard.server.dao.service.DataValidator;
 import org.thingsboard.server.dao.tenant.TbTenantProfileCache;
 import org.thingsboard.server.dao.tenant.TenantDao;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.thingsboard.server.common.data.CacheConstants.DEVICE_CACHE;
-import static org.thingsboard.server.common.data.CacheConstants.TERRITORY_CACHE;
-import static org.thingsboard.server.dao.device.DeviceServiceImpl.INCORRECT_DEVICE_ID;
-import static org.thingsboard.server.dao.model.ModelConstants.NULL_UUID;
 import static org.thingsboard.server.dao.service.Validator.validateId;
 
 @Service
@@ -82,7 +73,6 @@ public class TerritoryServiceImpl extends AbstractEntityService implements Terri
     }
 
     @Override
-    @CacheEvict(cacheNames = TERRITORY_CACHE, key = "{#territory.tenantId, #territory.name}")
     public TerritoryEntity saveTerritoryWithAccessToken(Territory entity, String accessToken) {
         return doSaveTerritory(entity, accessToken);
     }
@@ -107,8 +97,6 @@ public class TerritoryServiceImpl extends AbstractEntityService implements Terri
         } catch (Exception t) {
             ConstraintViolationException e = extractConstraintViolationException(t).orElse(null);
             if (e != null && e.getConstraintName() != null && e.getConstraintName().equalsIgnoreCase("territory_name_unq_key")) {
-                // remove device from cache in case null value cached in the distributed redis.
-                removeTerritoryFromCache(territory.getTenantId(), territory.getName());
                 throw new DataValidationException("Territory with such name already exists!");
             } else {
                 throw t;
@@ -122,14 +110,6 @@ public class TerritoryServiceImpl extends AbstractEntityService implements Terri
             territoryCredentialsService.createTerritoryCredentials(territory.getTenantId(), territoryCredentials);
         }
         return savedTerritory;
-    }
-
-    private void removeTerritoryFromCache(TenantId tenantId, String name) {
-        List<Object> list = new ArrayList<>();
-        list.add(tenantId);
-        list.add(name);
-        Cache cache = cacheManager.getCache(TERRITORY_CACHE);
-        cache.evict(list);
     }
 
     private DataValidator<Territory> territoryValidator =
