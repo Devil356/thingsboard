@@ -16,9 +16,10 @@
 package org.thingsboard.server.dao.megadevice;
 
 import org.thingsboard.server.common.data.Megadevice;
+import org.thingsboard.server.dao.model.sql.MegaDeviceEntity;
 
 import java.util.UUID;
 
 public interface MegaDeviceService {
-    Megadevice save(Megadevice megaDeviceEntity, UUID roomId);
+    MegaDeviceEntity save(MegaDeviceEntity megaDeviceEntity, UUID roomId);
 }

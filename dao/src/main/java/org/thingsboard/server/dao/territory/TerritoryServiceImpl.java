@@ -74,18 +74,19 @@ public class TerritoryServiceImpl extends AbstractEntityService implements Terri
     private TerritoryCredentialsService territoryCredentialsService;
 
     @Override
-    public Territory saveTerritory(Territory territory) {
-        log.trace("Executing saveTerritory [{}]", territory);
-        return territoryJpaRepository.save(territory);
+    public TerritoryEntity saveTerritory(Territory territory) {
+        TerritoryEntity territoryEntity = new TerritoryEntity(territory);
+        log.trace("Executing saveTerritory [{}]", territoryEntity);
+        return territoryJpaRepository.save(territoryEntity);
     }
 
     @Override
-    public Territory saveTerritoryWithAccessToken(Territory entity, String accessToken) {
+    public TerritoryEntity saveTerritoryWithAccessToken(Territory entity, String accessToken) {
         return doSaveTerritory(entity, accessToken);
     }
 
     @Override
-    public Territory findTerritoryById(TenantId tenantId, TerritoryId territoryId) {
+    public TerritoryEntity findTerritoryById(TenantId tenantId, TerritoryId territoryId) {
         log.trace("Executing findTerritoryById [{}]", territoryId);
         validateId(territoryId, INCORRECT_TERRITORY_ID + territoryId);
         if (TenantId.SYS_TENANT_ID.equals(tenantId)) {
@@ -95,10 +96,10 @@ public class TerritoryServiceImpl extends AbstractEntityService implements Terri
         }
     }
 
-    private Territory doSaveTerritory(Territory territory, String accessToken) {
+    private TerritoryEntity doSaveTerritory(Territory territory, String accessToken) {
         log.trace("Executing saveTerritory [{}]", territory);
         territoryValidator.validate(territory, Territory::getTenantId);
-        Territory savedTerritory;
+        TerritoryEntity savedTerritory;
         try {
             savedTerritory = territoryDao.save(territory.getTenantId(), territory);
         } catch (Exception t) {
@@ -113,7 +114,7 @@ public class TerritoryServiceImpl extends AbstractEntityService implements Terri
         }
         if (territory.getId() == null) {
             TerritoryCredentials territoryCredentials = new TerritoryCredentials();
-            territoryCredentials.setTerritoryId(new TerritoryId(savedTerritory.getUuidId()));
+            territoryCredentials.setTerritoryId(new TerritoryId(savedTerritory.toData().getUuidId()));
             territoryCredentials.setCredentialsType(TerritoryCredentialsType.ACCESS_TOKEN);
             territoryCredentials.setCredentialsId(!StringUtils.isEmpty(accessToken) ? accessToken : RandomStringUtils.randomAlphanumeric(20));
             territoryCredentialsService.createTerritoryCredentials(territory.getTenantId(), territoryCredentials);
@@ -142,7 +143,7 @@ public class TerritoryServiceImpl extends AbstractEntityService implements Terri
 
                 @Override
                 protected void validateUpdate(TenantId tenantId, Territory territory) {
-                    Territory old = territoryDao.findById(territory.getTenantId(), territory.getId().getId());
+                    TerritoryEntity old = territoryDao.findById(territory.getTenantId(), territory.getId().getId());
                     if (old == null) {
                         throw new DataValidationException("Can't update non existing territory!");
                     }

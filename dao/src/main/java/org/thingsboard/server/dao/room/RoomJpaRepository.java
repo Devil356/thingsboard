@@ -19,11 +19,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.thingsboard.server.common.data.Room;
+import org.thingsboard.server.dao.model.sql.RoomEntity;
 
 import java.util.UUID;
 
 @Repository
 @Transactional
-public interface RoomJpaRepository extends JpaRepository<Room, UUID> {
+public interface RoomJpaRepository extends JpaRepository<RoomEntity, UUID> {
 
 }

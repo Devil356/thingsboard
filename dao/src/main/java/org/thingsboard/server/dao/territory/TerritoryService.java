@@ -21,9 +21,9 @@ import org.thingsboard.server.common.data.id.TerritoryId;
 import org.thingsboard.server.dao.model.sql.TerritoryEntity;
 
 public interface TerritoryService {
-    Territory saveTerritory(Territory territory);
+    TerritoryEntity saveTerritory(Territory territory);
 
-    Territory saveTerritoryWithAccessToken(Territory territory, String accessToken);
+    TerritoryEntity saveTerritoryWithAccessToken(Territory territory, String accessToken);
 
-    Territory findTerritoryById(TenantId tenantId, TerritoryId territoryId);
+    TerritoryEntity findTerritoryById(TenantId tenantId, TerritoryId territoryId);
 }

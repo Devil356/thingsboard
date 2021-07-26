@@ -35,8 +35,8 @@ public class RoomServiceImpl implements RoomService {
     private BuildingJpaRepository buildingJpaRepository;
 
     @Override
-    public Room save(Room room, UUID buildingId) {
-        room.setBuilding(buildingJpaRepository.getOne(buildingId));
+    public RoomEntity save(RoomEntity room, UUID buildingId) {
+        room.setBuildingEntity(buildingJpaRepository.getOne(buildingId));
         return roomJpaRepository.save(room);
     }
 }

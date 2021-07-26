@@ -36,8 +36,8 @@ public class MegaDeviceServiceImpl implements MegaDeviceService {
     private RoomJpaRepository roomJpaRepository;
 
     @Override
-    public Megadevice save(Megadevice megadevice, UUID roomId) {
-        megadevice.setRoom(roomJpaRepository.getOne(roomId));
+    public MegaDeviceEntity save(MegaDeviceEntity megadevice, UUID roomId) {
+        megadevice.setRoomEntity(roomJpaRepository.getOne(roomId));
         return megaDeviceJpaRepository.save(megadevice);
     }
 }

@@ -35,8 +35,8 @@ public class TerritoryController extends BaseController {
         try {
             territory.setTenantId(getCurrentUser().getTenantId());
             territory.setCreatedTime(0L);
-            Territory savedTerritory = checkNotNull(territoryService.saveTerritory(territory));
-            return savedTerritory;
+            TerritoryEntity savedTerritory = checkNotNull(territoryService.saveTerritory(territory));
+            return savedTerritory.toData();
         } catch (Exception e) {
 
             throw handleException(e);
@@ -53,8 +53,8 @@ public class TerritoryController extends BaseController {
         try {
             entity.setTenantId(getCurrentUser().getTenantId());
             entity.setCreatedTime(0L);
-            Territory savedTerritory = checkNotNull(territoryService.saveTerritoryWithAccessToken(entity, accessToken));
-            return savedTerritory;
+            TerritoryEntity savedTerritory = checkNotNull(territoryService.saveTerritoryWithAccessToken(entity, accessToken));
+            return savedTerritory.toData();
         } catch (Exception e) {
 
             throw handleException(e);

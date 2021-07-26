@@ -29,6 +29,7 @@ import org.thingsboard.server.common.data.security.TerritoryCredentials;
 import org.thingsboard.server.common.msg.EncryptionUtil;
 import org.thingsboard.server.dao.entity.AbstractEntityService;
 import org.thingsboard.server.dao.exception.DataValidationException;
+import org.thingsboard.server.dao.model.sql.TerritoryEntity;
 import org.thingsboard.server.dao.service.DataValidator;
 import org.thingsboard.server.dao.util.mapping.JacksonUtil;
 
@@ -163,7 +164,7 @@ public class TerritoryCredentialsServiceImpl extends AbstractEntityService imple
                     if (StringUtils.isEmpty(territoryCredentials.getCredentialsId())) {
                         throw new DataValidationException("Territory credentials id should be specified!");
                     }
-                    Territory territory = territoryService.findTerritoryById(tenantId, territoryCredentials.getTerritoryId());
+                    TerritoryEntity territory = territoryService.findTerritoryById(tenantId, territoryCredentials.getTerritoryId());
                     if (territory == null) {
                         throw new DataValidationException("Can't assign territory credentials to non-existent territory!");
                     }

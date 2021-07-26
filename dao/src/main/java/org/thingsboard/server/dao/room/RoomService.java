@@ -16,9 +16,10 @@
 package org.thingsboard.server.dao.room;
 
 import org.thingsboard.server.common.data.Room;
+import org.thingsboard.server.dao.model.sql.RoomEntity;
 
 import java.util.UUID;
 
 public interface RoomService {
-    Room save(Room roomEntity, UUID buildingId);
+    RoomEntity save(RoomEntity roomEntity, UUID buildingId);
 }

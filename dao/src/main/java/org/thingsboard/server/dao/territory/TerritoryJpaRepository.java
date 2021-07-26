@@ -19,11 +19,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.thingsboard.server.common.data.Territory;
+import org.thingsboard.server.dao.model.sql.TerritoryEntity;
 
 import java.util.UUID;
 
 @Repository
 @Transactional
-public interface TerritoryJpaRepository extends JpaRepository<Territory, UUID> {
+public interface TerritoryJpaRepository extends JpaRepository<TerritoryEntity, UUID> {
 
 }

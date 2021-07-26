@@ -19,6 +19,7 @@ import org.thingsboard.server.common.data.Territory;
 import org.thingsboard.server.common.data.id.TenantId;
 import org.thingsboard.server.dao.Dao;
 import org.thingsboard.server.dao.TenantEntityDao;
+import org.thingsboard.server.dao.model.sql.TerritoryEntity;
 
 import java.util.UUID;
 
@@ -26,14 +27,14 @@ import java.util.UUID;
  * The Interface TerritoryDao.
  *
  */
-public interface TerritoryDao extends Dao<Territory>, TenantEntityDao {
+public interface TerritoryDao extends Dao<TerritoryEntity>, TenantEntityDao {
     /**
      * Save or update territory object
      *
      * @param territory the territory object
      * @return saved territory object
      */
-    Territory save(TenantId tenantId, Territory territory);
+    TerritoryEntity save(TenantId tenantId, Territory territory);
 
-    Territory findTerritoryByTenantIdAndId(TenantId tenantId, UUID id);
+    TerritoryEntity findTerritoryByTenantIdAndId(TenantId tenantId, UUID id);
 }
