@@ -37,7 +37,7 @@ public class RoomController extends BaseController {
         try {
             entity.setTenantId(getCurrentUser().getTenantId());
             entity.setCreatedTime(0L);
-            Room e = checkNotNull(roomService.save(entity, id));
+            Room e = checkNotNull(roomService.save(new RoomEntity(entity), id)).toData();
             return e;
         } catch (Exception e) {
 

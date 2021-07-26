@@ -37,7 +37,7 @@ public class BuildingController extends BaseController {
         try {
             entity.setTenantId(getCurrentUser().getTenantId());
             entity.setCreatedTime(0L);
-            Building e = checkNotNull(buildingService.save(entity, id));
+            Building e = checkNotNull(buildingService.save(new BuildingEntity(entity), id)).toData();
             return e;
         } catch (Exception e) {
 

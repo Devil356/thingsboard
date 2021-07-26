@@ -37,7 +37,7 @@ public class MegaDeviceController extends BaseController {
         try {
             entity.setTenantId(getCurrentUser().getTenantId());
             entity.setCreatedTime(0L);
-            Megadevice e = checkNotNull(megaDeviceService.save(entity, id));
+            Megadevice e = checkNotNull(megaDeviceService.save(new MegaDeviceEntity(entity), id)).toData();
             return e;
         } catch (Exception e) {
 
